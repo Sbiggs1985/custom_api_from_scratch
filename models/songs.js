@@ -31,10 +31,6 @@ const Song = sequelize.define('Song', {
   genre: {
     type: DataTypes.STRING,
   },
-  play_count: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
   song_url: {
     type: DataTypes.STRING,
   },

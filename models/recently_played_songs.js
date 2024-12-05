@@ -1,8 +1,8 @@
 // This table stores the song data fetched from spotify, like song id, title, artist, album, .etc.)
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database.js');
-const User = require('./User.js');
-const Song = require('./Songs.js');
+const User = require('./user.js');
+const Song = require('./songs.js');
 
 const UserSongData = sequelize.define('UserSongData', {
   id: {
@@ -18,7 +18,7 @@ const UserSongData = sequelize.define('UserSongData', {
     },
     allowNull: false,
   },
-  song_id: {
+  song_name: {
     type: DataTypes.INTEGER,
     references: {
       model: Song,
@@ -26,10 +26,14 @@ const UserSongData = sequelize.define('UserSongData', {
     },
     allowNull: false,
   },
-  play_count: {
+  track_id: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
+  last_played: {
+    type: dataTypes.INTEGER,
+    defaultvalue: 0,
+  }
 });
 
 UserSongData.belongsTo(User, { foreignKey: 'user_id' });
