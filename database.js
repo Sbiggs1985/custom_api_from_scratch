@@ -1,16 +1,15 @@
-const { Sequelize } = require('sequelize'); //sequeize libaray/ A node.js ORM Framework
-require('dotenv').config(); // Load environment variables
+const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-// Create a Sequelize instance
+// Initialize Sequelize
 const sequelize = new Sequelize(
-  process.env.DB_NAME,      // Database name
-  process.env.DB_USER,      // Username
-  process.env.DB_PASSWORD,  // Password
+  process.env.DB_NAME || 'database',
+  process.env.DB_USER || 'postgres',
+  process.env.DB_PASSWORD || 'password',
   {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 5432,
-    dialect: 'postgres',    // Database type
-    logging: false,         // Disable SQL query logging for cleaner output
+    host: process.env.DB_HOST || 'localhost',
+    dialect: 'postgres',
+    logging: false, // Disable logging for clean console output
   }
 );
 
@@ -24,7 +23,6 @@ const sequelize = new Sequelize(
   }
 })();
 
-// Export the Sequelize instance for use in other modules
 module.exports = sequelize;
 
 // My thoughts

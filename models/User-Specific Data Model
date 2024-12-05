@@ -1,0 +1,37 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../database');
+const User = require('./User');
+const Song = require('./Song');
+
+const UserSongData = sequelize.define('UserSongData', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  user_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: User,
+      key: 'id',
+    },
+    allowNull: false,
+  },
+  song_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Song,
+      key: 'id',
+    },
+    allowNull: false,
+  },
+  play_count: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+});
+
+UserSongData.belongsTo(User, { foreignKey: 'user_id' });
+UserSongData.belongsTo(Song, { foreignKey: 'song_id' });
+
+module.exports = UserSongData;
