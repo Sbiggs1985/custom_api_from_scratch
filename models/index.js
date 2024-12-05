@@ -1,6 +1,6 @@
 const sequelize = require('../database');
-const User = require('./User');
-const Song = require('./Song');
+const User = require('./user.js');
+const Song = require('./songs.js');
 const UserSongData = require('./UserSongData');
 
 // Define associations
