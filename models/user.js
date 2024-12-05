@@ -1,3 +1,4 @@
+// This table stores the users info like their spotify user id, user name, email, and access token for spotify authentication. 
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
 

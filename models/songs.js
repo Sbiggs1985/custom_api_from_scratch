@@ -1,3 +1,5 @@
+// This table stores song data fetched from spotify (song id, title, artist, ablbum, release year, genre, etc)
+
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
