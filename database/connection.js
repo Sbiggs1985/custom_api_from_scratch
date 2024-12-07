@@ -5,7 +5,7 @@ require('dotenv').config(); // Load environment variables
 const sequelize = new Sequelize(
   process.env.database,
   process.env.DB_USER, // Username
-  process.env.pssword, // Password
+  process.env.password, // Password
   {
     host: process.env.DB_HOST, // Database host
     dialect: 'postgres',       // Dialect (e.g., postgres, mysql, sqlite)
