@@ -1,3 +1,32 @@
-"scripts": {
+{
+  "name": "custom_api_from_scratch",
+  "version": "1.0.0",
+  "description": "<h1>Custom Api From Scratch</h1>",
+  "main": "database.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sbiggs1985/custom_api_from_scratch.git"
+  },
+  "keywords": [
+    "I",
+    "dont",
+    "know"
+  ],
+  "author": "Stephanie and Dom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sbiggs1985/custom_api_from_scratch/issues"
+  },
+  "homepage": "https://github.com/Sbiggs1985/custom_api_from_scratch#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "querystring": "^0.2.1"
+  }
 }
