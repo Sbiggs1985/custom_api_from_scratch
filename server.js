@@ -8,7 +8,6 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
 const callbackRoutes = require('./routes/callback');
 const userLoginRoutes = require('./routes/userLogin');
-const { sequelize } = require('./models'); //The ONLY thing I added to sync the code to models.
 
 app.use('/login', userLoginRoutes);
 app.use('/callback', callbackRoutes);
