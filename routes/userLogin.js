@@ -1,4 +1,15 @@
-app.get('/login', (req, res) => {
+const querystring = require('querystring');
+const express = require('express');
+const router = express.Router();
+
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
+
+router.get('/login', (req, res) => {
+  if (!CLIENT_ID || !REDIRECT_URI) {
+    return res.status(500).send({ error: 'Missing Spotify client ID or redirect URI' });
+  }
+
   const queryParams = querystring.stringify({
     client_id: CLIENT_ID,
     redirect_uri: REDIRECT_URI,
@@ -8,3 +19,5 @@ app.get('/login', (req, res) => {
 
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
+
+module.exports = router;
