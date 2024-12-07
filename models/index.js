@@ -1,10 +1,14 @@
-const sequelize = require('../database');
-const User = require('./user.js');
-const Song = require('./songs.js');
-const UserSongData = require('./UserSongData');
+const sequelize = require('../database/connection');
+const User = require('./User');
+const Song = require('./Song');
+const RecentlyPlayedSong = require('./RecentlyPlayedSong');
 
-// Define associations
-User.hasMany(UserSongData, { foreignKey: 'user_id' });
-Song.hasMany(UserSongData, { foreignKey: 'song_id' });
+// Define relationships
+User.hasMany(RecentlyPlayedSong, { foreignKey: 'userId' });
+RecentlyPlayedSong.belongsTo(User, { foreignKey: 'userId' });
 
-module.exports = { sequelize, User, Song, UserSongData };
+Song.hasMany(RecentlyPlayedSong, { foreignKey: 'songId' });
+RecentlyPlayedSong.belongsTo(Song, { foreignKey: 'songId' });
+
+// Export models and Sequelize instance
+module.exports = { sequelize, User, Song, RecentlyPlayedSong };
