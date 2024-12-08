@@ -1,7 +1,7 @@
 const sequelize = require('../database/connection');
-const User = require('./User');
-const Song = require('./Song');
-const RecentlyPlayedSong = require('./RecentlyPlayedSong');
+const User = require('../models/user');
+const Song = require('../models/songs');
+const RecentlyPlayedSong = require('../models/recentlyPlayedSongs');
 
 // Define relationships
 User.hasMany(RecentlyPlayedSong, { foreignKey: 'userId' });
