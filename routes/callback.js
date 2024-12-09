@@ -11,7 +11,7 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
-router.get('/callback', async (req, res) => {
+router.get('/', async (req, res) => {
   const code = req.query.code;
 
   if (!code) {
@@ -49,7 +49,7 @@ router.get('/callback', async (req, res) => {
     console.log('Email:', email);
     console.log('Token Expires At:', tokenExpiresAt);
 
-
+    /*
     await User.upsert({
       spotify_user_id: spotifyUserId,
       username,
@@ -58,6 +58,7 @@ router.get('/callback', async (req, res) => {
       refresh_token,
       token_expires_at: tokenExpiresAt,
     });
+    */
 
     res.json({
       message: 'AUTHENTICATION WAS A SUCCESS!',

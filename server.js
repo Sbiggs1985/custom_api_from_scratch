@@ -13,7 +13,7 @@ app.use('/login', userLoginRoutes);
 app.use('/callback', callbackRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Welcome!');
+  res.send('Burrito are meant to be big and full!');
 });
 
 app.listen(PORT, () => {
