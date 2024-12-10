@@ -1,4 +1,4 @@
-const sequelize = require('../database/connection');
+const sequelize = require('../connection');
 const User = require('../models/user');
 const Song = require('../models/songs');
 const RecentlyPlayedSong = require('../models/recentlyPlayedSongs');

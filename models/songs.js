@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../connection');
 
 const Song = sequelize.define('Song', {
   songId: { type: DataTypes.STRING, unique: true, allowNull: false },

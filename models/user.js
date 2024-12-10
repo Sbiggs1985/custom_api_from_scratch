@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection'); // Import the connection
+const sequelize = require('../connection'); // Import the connection
 
 // Define the User model
 const User = sequelize.define('User', {
