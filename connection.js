@@ -4,14 +4,14 @@ require('dotenv').config(); // Load environment variables
 console.log('Database Config:', {
   DB_HOST: process.env.DB_HOST,
   DB_PORT: process.env.DB_PORT,
-  DB_NAME: process.env.DB_NAME,
-  DB_PASSWORD: process.env.DB_PASSWORD,
+  DB_NAME: process.env.database,
+  DB_PASSWORD: process.env.root,
 });
 
 // Initialize Sequelize
 const sequelize = new Sequelize(
   process.env.database,
-  process.env.user_name, // Username
+  process.env.postgre, // Username
   process.env.password, // Password
   {
     host: process.env.DB_HOST, // ????

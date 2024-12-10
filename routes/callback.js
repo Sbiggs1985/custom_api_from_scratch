@@ -1,4 +1,4 @@
-const db = require('../database/connection');
+const db = require('../connection');
 const axios = require('axios');
 const querystring = require('querystring');
 const express = require('express');
