@@ -4,6 +4,7 @@ const querystring = require('querystring');
 const express = require('express');
 require('dotenv').config();
 const { User } = require('../models');
+const populateRecentlyPlayed = require('../utils/recentlyPlayedSongs');
 
 const router = express.Router();
 
@@ -58,6 +59,9 @@ router.get('/', async (req, res) => {
       refresh_token,
       token_expires_at: tokenExpiresAt,
     });
+    
+    
+    await populateRecentlyPlayed(access_token, spotifyUserId);
     */
 
     res.json({
