@@ -25,6 +25,33 @@ router.get('/', (req, res) => {
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Logs in a user
+ *     description: Authenticates a user by validating username and password.
+ *     parameters:
+ *       - in: body
+ *         name: user
+ *         description: User credentials for login.
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             username:
+ *               type: string
+ *             password:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *       400:
+ *         description: Username and password are required
+ *       401:
+ *         description: Invalid credentials
+ */
+
 // Adding a post route so endpoint is intended to handle post requests
 // POST /login (New route)
 const userLogin = (req, res) => {

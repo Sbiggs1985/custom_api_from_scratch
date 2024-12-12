@@ -3,6 +3,19 @@ const { User } = require('../models/user'); // Import the User model
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Get all users
+ *     description: Retrieves a list of all users in the database.
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *       500:
+ *         description: Failed to fetch users
+ */
+
 // GET all users
 router.get('/', async (req, res) => {
   try {

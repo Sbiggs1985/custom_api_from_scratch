@@ -4,6 +4,25 @@ const { Song } = require('../models'); // Import the Song model
 const router = express.Router();
 
 /**
+ * @swagger
+ * /songs:
+ *   get:
+ *     summary: Fetch all songs
+ *     tags: [Songs]
+ *     responses:
+ *       200:
+ *         description: A list of songs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Song'
+ *       500:
+ *         description: Failed to fetch songs
+ */
+
+/**
  * GET /songs
  * Fetch all songs
  */

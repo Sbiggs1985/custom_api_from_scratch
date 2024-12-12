@@ -26,3 +26,19 @@
 [2024-12-12T17:57:32.136Z] [WARN] This is a warning message
 [2024-12-12T17:57:32.138Z] [ERROR] This is an error message
 {"errorDetails":"Some details about the error"}
+[2024-12-12T18:13:33.201Z] [LOG] This is an info message
+[2024-12-12T18:13:33.203Z] [WARN] This is a warning message
+[2024-12-12T18:13:33.205Z] [ERROR] This is an error message
+{"errorDetails":"Some details about the error"}
+[2024-12-12T18:14:38.316Z] [LOG] This is an info message
+[2024-12-12T18:14:38.317Z] [WARN] This is a warning message
+[2024-12-12T18:14:38.319Z] [ERROR] This is an error message
+{"errorDetails":"Some details about the error"}
+[2024-12-12T18:54:38.105Z] [LOG] This is an info message
+[2024-12-12T18:54:38.108Z] [WARN] This is a warning message
+[2024-12-12T18:54:38.111Z] [ERROR] This is an error message
+{"errorDetails":"Some details about the error"}
+[2024-12-12T19:08:43.155Z] [LOG] This is an info message
+[2024-12-12T19:08:43.157Z] [WARN] This is a warning message
+[2024-12-12T19:08:43.159Z] [ERROR] This is an error message
+{"errorDetails":"Some details about the error"}

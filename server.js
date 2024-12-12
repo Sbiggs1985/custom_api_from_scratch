@@ -1,6 +1,8 @@
 const express = require('express');
 const sequelize = require('./connection'); // Make sure this file exports the sequelize instance
 const { sequelize: modelsSequelize } = require('./models'); // Import sequelize from models for syncing
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +13,26 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 const callbackRoutes = require('./routes/callback');
 const userLogin = require('./routes/userLogin');
 const songRoutes = require('./routes/songRoutes'); // Import the song routes
+
+// Swagger Configuration
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0', // Swagger version
+    info: {
+      title: 'spotifyapi', // API title
+      version: '1.0.0', // API version
+      description: 'A custom built api that integrates & retrieves song data from Spotify', // API description
+    },
+    servers: [
+      {
+        url: `http://localhost:${PORT}`, // API server URL
+      },
+    ],
+  },
+  apis: ['./routes/*.js'], // Paths to the API routes that you want to document
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 // Sync Sequelize models with the database
 modelsSequelize.sync()
@@ -28,6 +50,9 @@ app.use(express.json());
 app.post('/login', userLogin);
 app.use('/callback', callbackRoutes);
 app.use('/songs', songRoutes); // Add this line to handle routes for songs
+
+// Swagger UI route for API documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Default route
 app.get('/', (req, res) => {
