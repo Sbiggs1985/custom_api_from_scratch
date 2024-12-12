@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2024-12-11T20:36:25.209Z] [LOG] This is an info message
 [2024-12-11T20:36:25.217Z] [WARN] This is a warning message
 [2024-12-11T20:36:25.220Z] [ERROR] This is an error message
@@ -22,3 +23,6 @@
 [2024-12-12T16:38:27.534Z] [WARN] This is a warning message
 [2024-12-12T16:38:27.536Z] [ERROR] This is an error message
 {"errorDetails":"Some details about the error"}
+=======
+
+>>>>>>> b7988ca7dd66e739ba7573e1e64c889ca6c16b90

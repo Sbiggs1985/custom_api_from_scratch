@@ -25,6 +25,7 @@ router.get('/', (req, res) => {
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
 
+<<<<<<< HEAD
 // Adding a post route so endpoint is intended to handle post requests
 // POST /login (New route)
 const userLogin = (req, res) => {
@@ -45,3 +46,6 @@ const userLogin = (req, res) => {
 };
 
 module.exports = userLogin;
+=======
+module.exports = router;
+>>>>>>> b7988ca7dd66e739ba7573e1e64c889ca6c16b90
