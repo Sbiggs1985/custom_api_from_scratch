@@ -98,8 +98,4 @@ router.delete('/:songId', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> b7988ca7dd66e739ba7573e1e64c889ca6c16b90

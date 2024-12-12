@@ -26,8 +26,4 @@ sequelize.authenticate()
   .then(() => console.log('Database connected!'))
   .catch((err) => console.error('Database connection failed:', err));
 
-<<<<<<< HEAD:connection.js
 module.exports = sequelize;
-=======
-module.exports = sequelize;
->>>>>>> b7988ca7dd66e739ba7573e1e64c889ca6c16b90:database/connection.js
