@@ -49,7 +49,6 @@ router.get('/', async (req, res) => {
     console.log('Email:', email);
     console.log('Token Expires At:', tokenExpiresAt);
 
-    /*
     await User.upsert({
       spotify_user_id: spotifyUserId,
       username,
@@ -58,7 +57,6 @@ router.get('/', async (req, res) => {
       refresh_token,
       token_expires_at: tokenExpiresAt,
     });
-    */
 
     res.json({
       message: 'AUTHENTICATION WAS A SUCCESS!',

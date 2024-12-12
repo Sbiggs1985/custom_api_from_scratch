@@ -25,4 +25,23 @@ router.get('/', (req, res) => {
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
 
-module.exports = router;
+// Adding a post route so endpoint is intended to handle post requests
+// POST /login (New route)
+const userLogin = (req, res) => {
+  const { username, password } = req.body;
+
+  console.log( username, password);
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
+
+  // Simulate login logic
+  if (username == 'test' && password == 'pass') {
+    return res.status(200).json({ message: 'Login successful' });
+  }
+
+  res.status(401).json({ error: 'Invalid credentials' });
+};
+
+module.exports = userLogin;

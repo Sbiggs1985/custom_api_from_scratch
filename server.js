@@ -9,7 +9,8 @@ const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
 const callbackRoutes = require('./routes/callback');
-const userLoginRoutes = require('./routes/userLogin');
+const userLogin = require('./routes/userLogin');
+const songRoutes = require('./routes/songRoutes'); // Import the song routes
 
 // Sync Sequelize models with the database
 modelsSequelize.sync()
@@ -20,15 +21,27 @@ modelsSequelize.sync()
     console.error('Error syncing models with the database:', err);
   });
 
-app.use('/login', userLoginRoutes);
-app.use('/callback', callbackRoutes);
+// Middleware to parse JSON
+app.use(express.json());
 
+// Routes
+app.post('/login', userLogin);
+app.use('/callback', callbackRoutes);
+app.use('/songs', songRoutes); // Add this line to handle routes for songs
+
+// Default route
 app.get('/', (req, res) => {
-  res.send('Burritos are meant to be big and full!');
+  res.send('No burritos. HAHA!');
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// changes
+const logger = require('./logger');  // Import the logger
+
+// Test logging
+logger.info('This is an info message');
+logger.warn('This is a warning message');
+logger.error('This is an error message', { errorDetails: 'Some details about the error' });
