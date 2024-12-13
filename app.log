@@ -42,3 +42,11 @@
 [2024-12-12T19:08:43.157Z] [WARN] This is a warning message
 [2024-12-12T19:08:43.159Z] [ERROR] This is an error message
 {"errorDetails":"Some details about the error"}
+[2024-12-12T19:21:25.360Z] [LOG] This is an info message
+[2024-12-12T19:21:25.363Z] [WARN] This is a warning message
+[2024-12-12T19:21:25.365Z] [ERROR] This is an error message
+{"errorDetails":"Some details about the error"}
+[2024-12-12T19:38:17.656Z] [LOG] This is an info message
+[2024-12-12T19:38:17.658Z] [WARN] This is a warning message
+[2024-12-12T19:38:17.660Z] [ERROR] This is an error message
+{"errorDetails":"Some details about the error"}
