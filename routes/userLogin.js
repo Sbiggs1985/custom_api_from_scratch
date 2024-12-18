@@ -10,7 +10,9 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 console.log('SPOTIFY_CLIENT_ID:', CLIENT_ID);
 console.log('SPOTIFY_REDIRECT_URI:', REDIRECT_URI);
 
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
+  const scope = 'user-read-email user-read-private user-read-recently-played'
+
   if (!CLIENT_ID || !REDIRECT_URI) {
     return res.status(500).send({ error: 'Missing Spotify client ID or redirect URI' });
   }
@@ -19,7 +21,8 @@ router.get('/', (req, res) => {
     client_id: CLIENT_ID,
     redirect_uri: REDIRECT_URI,
     response_type: 'code',
-    scope: 'user-read-recently-played'
+    scope: scope,
+    show_dialog: true
   });
 
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
@@ -54,11 +57,9 @@ router.get('/', (req, res) => {
 
 // Adding a post route so endpoint is intended to handle post requests
 // POST /login (New route)
-const userLogin = (req, res) => {
+router.post('/login', (req, res) => {
   const { username, password } = req.body;
-
-  console.log( username, password);
-
+  
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required' });
   }
@@ -68,7 +69,8 @@ const userLogin = (req, res) => {
     return res.status(200).json({ message: 'Login successful' });
   }
 
+  
   res.status(401).json({ error: 'Invalid credentials' });
-};
+});
 
-module.exports = userLogin;
+module.exports = router;

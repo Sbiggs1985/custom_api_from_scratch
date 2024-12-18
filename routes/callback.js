@@ -3,7 +3,7 @@ const axios = require('axios');
 const querystring = require('querystring');
 const express = require('express');
 require('dotenv').config();
-const { User } = require('../models');
+const { User, Song, RecentlyPlayedSong } = require('../models');
 
 const router = express.Router();
 
@@ -40,22 +40,62 @@ router.get('/', async (req, res) => {
     });
 
     const spotifyUserId = userProfile.data.id;
-    const username = userProfile.data.display_name || null;
-    const email = userProfile.data.email || null;
+    const username = userProfile.data.display_name;
+    const email = userProfile.data.email;
     const tokenExpiresAt = new Date(Date.now() + expires_in * 1000);
 
-    console.log('Spotify User ID:', spotifyUserId);
-    console.log('Username:', username);
-    console.log('Email:', email);
-    console.log('Token Expires At:', tokenExpiresAt);
+    console.log({ spotifyUserId, username, email });
 
     await User.upsert({
-      spotify_user_id: spotifyUserId,
+      spotifyUserId,
       username,
       email,
-      access_token,
-      refresh_token,
-      token_expires_at: tokenExpiresAt,
+      accessToken: access_token,
+      refreshToken: refresh_token,
+      tokenExpiresAt: tokenExpiresAt,
+    });
+
+    const recentlyPlayedResponse = await axios.get('https://api.spotify.com/v1/me/player/recently-played', {
+      headers: { Authorization: `Bearer ${access_token}` },
+      params: { limit: 50 }, 
+    });
+
+    const recentlyPlayed = recentlyPlayedResponse.data.items;
+
+    for (const item of recentlyPlayed) {
+      const track = item.track;
+
+      const [song] = await Song.findOrCreate({
+        where: { songId: track.id },
+        defaults: {
+          title: track.name,
+          artist: track.artists.map(artist => artist.name).join(', '),
+          album: track.album.name,
+          releaseYear: track.album.release_date.split('-')[0],
+          genre: null,
+          songUrl: track.external_urls.spotify,
+        },
+      });
+
+      // Insert into the `recently_played_songs` table
+      await RecentlyPlayedSong.create({
+        songName: track.name,
+        artistName: track.artists.map(artist => artist.name).join(', '),
+        albumName: track.album.name,
+        lastPlayed: item.played_at,
+      });
+    }
+
+    console.log('Recently played songs have been saved to the database.');
+
+
+    console.log({
+      spotifyUserId,
+      username,
+      email,
+      accessToken: access_token,
+      refreshToken: refresh_token,
+      tokenExpiresAt: tokenExpiresAt,
     });
 
     res.json({

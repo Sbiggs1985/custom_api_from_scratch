@@ -117,4 +117,17 @@ router.delete('/:songId', async (req, res) => {
   }
 });
 
+router.get('/genre/:genre', async (req, res) => {
+  const { genre } = req.params;
+  try {
+    const songs = await Song.findAll({
+      where: { genre },
+    });
+    res.json(songs);
+  } catch (error) {
+    console.error('Error searching songs by genre:', error);
+    res.status(500).send({ error: 'Failed to search songs by genre' });
+  }
+});
+
 module.exports = router;

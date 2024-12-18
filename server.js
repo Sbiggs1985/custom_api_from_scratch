@@ -13,6 +13,7 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 const callbackRoutes = require('./routes/callback');
 const userLogin = require('./routes/userLogin');
 const songRoutes = require('./routes/songRoutes'); // Import the song routes
+const recentlyPlayedRoutes = require('./routes/recentlyPlayedRoutes');
 
 // Swagger Configuration
 const swaggerOptions = {
@@ -46,10 +47,11 @@ modelsSequelize.sync()
 // Middleware to parse JSON
 app.use(express.json());
 
-// Routes
-app.post('/login', userLogin);
+// Routess
+app.use('/', userLogin);
 app.use('/callback', callbackRoutes);
-app.use('/songs', songRoutes); // Add this line to handle routes for songs
+app.use('/songs', songRoutes); 
+app.use('/recently-played', recentlyPlayedRoutes);
 
 // Swagger UI route for API documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
